@@ -46,6 +46,20 @@ Route::get('/payment', function () {
 });
 
 
-Route::get('/status', function () {
-    return view('cart.status');
+Route::get('/order', function () {
+    return view('order.main');
+});
+// Route untuk Seller
+// TODO:Sesuaikan data dengan backend
+Route::get('/seller', function () {
+    return view('seller.main');
+});
+Route::get('/seller/add-coupon', function () {
+    return view('seller.add-coupon');
+});
+Route::get('/seller/add-product', function () {
+    return view('seller.add-product');
+});
+Route::get('/seller/order', function () {
+    return view('seller.order');
 });

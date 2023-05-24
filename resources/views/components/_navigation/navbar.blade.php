@@ -9,9 +9,9 @@
             </span>
         </a>
         <div class="flex md:order-2 space-x-2">
-            <button href="" type="button" class="text-white bluebutton focus:ring-blue-300 font-medium rounded-lg text-base px-8 py-2.5 text-center mr-3 md:mr-0" onClick={Login}>
+            <a href="/login" type="button" class="text-white hover:text-white bluebutton focus:ring-blue-300 font-medium rounded-lg text-base px-8 py-2.5 text-center mr-3 md:mr-0" onClick={Login}>
                 Log In
-            </button>
+            </a>
             <button type="button" class="text-white bg-slate-100 hover:bg-slate-200 focus:ring-transparent border-none">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-6 h-6" aria-hidden="true" fill="" viewBox="0 0 20 20">
@@ -27,12 +27,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="text-base font-semibold bluefont inline-block p-4 px-10 py-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-400 cursor-not-allowed" id="contacts-tab">
+                    <a href="#main" class="text-base font-semibold bluefont inline-block p-4 px-10 py-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-400 cursor-not-allowed" id="contacts-tab">
                         Store
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="text-base font-semibold bluefont inline-block p-4 px-10 py-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-400 cursor-not-allowed" id="contacts-tab">
+                    <a href="/order" class="text-base font-semibold bluefont inline-block p-4 px-10 py-4 rounded-t-lg border-b-2 border-transparent hover:text-blue-500 hover:border-blue-400" id="contacts-tab">
                         Order
                     </a>
                 </li>

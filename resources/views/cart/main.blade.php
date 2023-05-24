@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cart</title>
     @vite('resources/css/app.css')
 
 </head>
@@ -57,7 +57,7 @@
                 <input type="text" id="default-review" class="block w-full p-4 text-sm text-gray-900 rounded-none bg-gray-300 focus:outline-none" placeholder="Enter coupon code">
                 <button type="submit" class="greyButton ">Submit</button>
             </div>
-            <button type="submit" class="greyButton">NEXT</button>
+            <button form="input" type="submit" class="greyButton">NEXT</button>
         </div>
 
     </div>

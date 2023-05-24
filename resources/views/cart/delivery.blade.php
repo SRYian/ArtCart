@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Delivery Options</title>
     @vite('resources/css/app.css')
 
 </head>
@@ -23,7 +23,7 @@
         <div class="col-span-2">
 
             <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">CART</h5>
-            <form class="my-10 w-1/3">
+            <form id="input" class="my-10 w-1/3">
                 <div class="flex flex-col space-y-2">
                     <label for="city">City</label>
                     <select name="city" id="city" class="px-2 py-4 rounded-md">
@@ -47,7 +47,7 @@
             <p>Delivery: Rp0</p>
             <p>Coupon: -Rp72.000,00</p>
             <p>Total: Rp0</p>
-            <button type="submit" class="greyButton">NEXT</button>
+            <button type="submit" form="input" class="greyButton">NEXT</button>
         </div>
 
     </div>

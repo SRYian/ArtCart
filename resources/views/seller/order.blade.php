@@ -21,7 +21,7 @@
 
     <div class="grid grid-cols-3 gap-4 justify-around p-10">
         <div class="col-span-2">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">CART</h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">CURRENT ORDER QUEUE</h5>
             <table class="table-fixed border-collapse w-full text-left text-gray-500 my-10">
                 <thead class="text-xs text-gray-700 bg-gray-200 uppercase">
                     <tr>
@@ -29,6 +29,7 @@
                         <th class="px-6 py-3 border-b-4 border-blue-500">Price</th>
                         <th class="px-6 py-3 border-b-4 border-blue-500">Qty</th>
                         <th class="px-6 py-3 border-b-4 border-blue-500">Status</th>
+                        <th class="px-6 py-3 border-b-4 border-blue-500">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,15 +37,19 @@
                         <td class="px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
                         <td class="px-6 py-4">Rp75.000,00</td>
                         <td class="px-6 py-4">1</td>
-                        <td class="px-6 py-4">Awaiting payment</td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div class="h-2.5 w-2.5 rounded-full bg-orange-500 mr-2"></div> Awaiting payment
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <button type="submit" class="greyButton">CONFIRM</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-span-1 max-w-sm bg-gray-200 rounded-lg p-12 flex flex-col space-y-10 justify-start shadow-md">
-            <p class="font-bold">SUMMARY</p>
-            <p>Total: Rp0</p>
-        </div>
+
 
     </div>
 </body>
