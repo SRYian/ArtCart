@@ -15,13 +15,12 @@
 
     <section class="mt-40">
         <div class="flex py-4 px-10 blueBG rounded-sm text-xl text-gray-200">
-            STEP 1/3
+            ORDER STATUS
         </div>
     </section>
 
     <div class="grid grid-cols-3 gap-4 justify-around p-10">
         <div class="col-span-2">
-
             <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">CART</h5>
             <table class="table-fixed border-collapse w-full text-left text-gray-500 my-10">
                 <thead class="text-xs text-gray-700 bg-gray-200 uppercase">
@@ -30,34 +29,21 @@
                         <th class="px-6 py-3 border-b-4 border-blue-500">Price</th>
                         <th class="px-6 py-3 border-b-4 border-blue-500">Qty</th>
                         <th class="px-6 py-3 border-b-4 border-blue-500">Status</th>
-                        <th class="px-6 py-3 border-b-4 border-blue-500">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-gray-50 border-b hover:bg-gray-100">
                         <td class="px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
                         <td class="px-6 py-4">Rp75.000,00</td>
-                        <td class="px-6 py-4">
-                            <input type="number" id="first_product" class="bg-gray-200 w-14 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required>
-                        </td>
-                        <td class="px-6 py-4">Available</td>
-                        <td class="px-6 py-4">
-                            <button class="redbutton text-white">REMOVE</button>
-                        </td>
+                        <td class="px-6 py-4">1</td>
+                        <td class="px-6 py-4">Awaiting payment</td>
                     </tr>
                 </tbody>
             </table>
-            <button type="submit" class="greyButton">BACK</button>
         </div>
         <div class="col-span-1 max-w-sm bg-gray-200 rounded-lg p-12 flex flex-col space-y-10 justify-start shadow-md">
             <p class="font-bold">SUMMARY</p>
-            <p>Items: 1</p>
-            <p>Total: Rp72.000,00</p>
-            <div class="relative flex space-x-3">
-                <input type="text" id="default-review" class="block w-full p-4 text-sm text-gray-900 rounded-none bg-gray-300 focus:outline-none" placeholder="Enter coupon code">
-                <button type="submit" class="greyButton ">Submit</button>
-            </div>
-            <button type="submit" class="greyButton">NEXT</button>
+            <p>Total: Rp0</p>
         </div>
 
     </div>

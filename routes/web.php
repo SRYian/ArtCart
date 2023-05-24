@@ -40,3 +40,12 @@ Route::get('/cart', function () {
 Route::get('/delivery', function () {
     return view('cart.delivery');
 });
+
+Route::get('/payment', function () {
+    return view('cart.payment');
+});
+
+
+Route::get('/status', function () {
+    return view('cart.status');
+});
