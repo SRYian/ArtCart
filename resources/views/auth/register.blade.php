@@ -21,33 +21,56 @@
                     <br>
                     REGISTRATION
                 </h3>
-                <div class="flex flex-col text-gray-400 py-2">
-                    <label class="text-gray-500  font-semibold text-left" htmlFor="">
-                        Username
-                    </label>
-                    <input class="rounded-md text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none " type="text" placeholder="username" value="ssss" name="" id="" required />
+                <div class="flex space-x-4">
+                    <div>
+                        <div class="flex flex-col text-gray-400 py-2">
+                            <label class="text-gray-500  font-semibold text-left" htmlFor="">
+                                Username
+                            </label>
+                            <input class="rounded-md text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none " type="text" placeholder="username" value="ssss" name="" id="" required />
+                        </div>
+                        <div class="flex flex-col text-gray-400 py-2 ">
+                            <label class="text-gray-500 font-semibold text-left" htmlFor="">
+                                Password
+                            </label>
+                            <input class="rounded-md text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none " type="password" placeholder="password" value="ssss" name="" id="" required />
+                        </div>
+                        <div class="flex flex-col text-gray-400 py-2 ">
+                            <label class="text-gray-500 font-semibold text-left" htmlFor="">
+                                Confirm Password
+                            </label>
+                            <input class="rounded-md text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none " type="password" placeholder="password" value="ssss" name="" id="" required />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex flex-col text-gray-400 py-2 ">
+                            <label class="text-gray-500 font-semibold text-left" htmlFor="">
+                                Type
+                            </label>
+                            <select required name="account_type" id="account_type" class="mt-2 p-1 bg-gray-300 rounded-md">
+                                <option value="regular" class="text-gray-500">Regular</option>
+                                <option value="seller" class="text-gray-500">Seller</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col text-gray-400 py-2 ">
+                            <label class="text-gray-500 font-semibold text-left" htmlFor="">
+                                City
+                            </label>
+                            <select required name="account_city" id="account_city" class="mt-2 p-1 bg-gray-300 rounded-md">
+                                <option value="Jakarta" class="text-gray-500">Jakarta</option>
+                                <option value="Surabaya" class="text-gray-500">Surabaya</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col text-gray-400 py-2 ">
+                            <label class="text-gray-500 font-semibold text-left" htmlFor="">
+                                Address
+                            </label>
+                            <input class="rounded-md text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none " type="input" placeholder="Jl. Mandiri 1" value="ssss" name="" id="" required />
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col text-gray-400 py-2 ">
-                    <label class="text-gray-500 font-semibold text-left" htmlFor="">
-                        Password
-                    </label>
-                    <input class="rounded-md text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none " type="password" placeholder="password" value="ssss" name="" id="" required />
-                </div>
-                <div class="flex flex-col text-gray-400 py-2 ">
-                    <label class="text-gray-500 font-semibold text-left" htmlFor="">
-                        Confirm Password
-                    </label>
-                    <input class="rounded-md text-gray-500 bg-gray-300 mt-2 p-1 focus:border-x-green-400 focus:bg-gray-400 focus:outline-none " type="password" placeholder="password" value="ssss" name="" id="" required />
-                </div>
-                <div class="flex flex-col text-gray-400 py-2 ">
-                    <label class="text-gray-500 font-semibold text-left" htmlFor="">
-                        Confirm Password
-                    </label>
-                    <select required name="quality" id="quality" class="mt-2 p-1 bg-gray-300 rounded-md">
-                        <option value="regular" class="text-gray-500">Regular</option>
-                        <option value="seller" class="text-gray-500">Seller</option>
-                    </select>
-                </div>
+                
+                
                 <button type="submit" class="bluebutton w-full my-9 py-2 bg-green-400 shadow-md hover:bg-green-500 shadow-blue-500/50 hover:shadow-blue-500/40 text-white font-semibold rounded-full border-none focus:outline-none">
                     Register
                 </button>
