@@ -4,12 +4,24 @@ namespace App\Core\Models\Product;
 
 class Product
 {
+    private ProductId $id;
+
+
     private string $name;
     private int $price;
     private int $weight;
     private int $stock;
     private string $description;
     private string $photourl;
+
+
+    /**
+     * @return ProductId
+     */
+    public function getId(): ProductId
+    {
+        return $this->id;
+    }
     /**
      * @return string
      */
@@ -98,8 +110,9 @@ class Product
      * @param string $description
      * @param string $photourl
      */
-    public function __construct(string $name, int $price, int $weight, int $stock, string $description, string $photourl)
+    public function __construct(ProductId $id, string $name, int $price, int $weight, int $stock, string $description, string $photourl)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->price = $price;
         $this->weight = $weight;
