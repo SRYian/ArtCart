@@ -8,13 +8,26 @@ use Illuminate\Support\Facades\DB;
 
 class ProductRepository implements \App\Core\Repository\ProductRepositoryInterface
 {
+    public function show(): array
+    {
+        // TODO: Implement show() method.
+        $row = DB::table('product')->select(['name', 'price', 'weight', 'stock', 'description', 'photourl']);
+
+        $productList = array();
+
+        foreach ($row as $product) {
+            $productList[] = new Product(new ProductId($product->product_id), $product->name, $product->price, $product->weight, $product->stock, $product->description, $product->photourl);
+        }
+
+        return $productList;
+    }
 
     public function byId(ProductId $id): ?Product
     {
-        $row=DB::table('product')->where('product_id',$id->id())->first();
+        $row = DB::table('product')->where('product_id', $id->id())->first();
         // TODO: Implement byId() method.
         if (!$row) return null;
-        return new Product(new ProductId($row->product_id),$row->name,$row->price,$row->weight,$row->stock,$row->description,$row->photourl);
+        return new Product(new ProductId($row->product_id), $row->name, $row->price, $row->weight, $row->stock, $row->description, $row->photourl);
     }
 
     public function save(Product $product): void
@@ -38,7 +51,7 @@ class ProductRepository implements \App\Core\Repository\ProductRepositoryInterfa
     public function delete(Product $product): void
     {
         // TODO: Implement delete() method.
-        DB::table('product')->delete($product->getId())
+        DB::table('product')->delete($product->getId());
     }
     private function constructPayloadWithoutId(Product $product)
     {
@@ -47,6 +60,7 @@ class ProductRepository implements \App\Core\Repository\ProductRepositoryInterfa
             "name" => $product->getName(),
             "price" => $product->getPrice(),
             "weight" => $product->getWeight(),
+            "stock" => $product->getStock(),
             "description" => $product->getDescription(),
             "photourl" => $product->getPhotourl(),
         ];

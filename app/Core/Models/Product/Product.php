@@ -11,6 +11,8 @@ class Product
     private int $price;
     private int $weight;
     private int $stock;
+
+
     private string $description;
     private string $photourl;
 
@@ -69,7 +71,13 @@ class Product
     {
         $this->weight = $weight;
     }
-
+    /**
+     * @return int
+     */
+    public function getStock(): int
+    {
+        return $this->stock;
+    }
     /**
      * @return string
      */
