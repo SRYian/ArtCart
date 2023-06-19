@@ -49,11 +49,11 @@ class CartDetails
     }
 
     /**
-     * @return CartId
+     * @return Cart
      */
-    public function getCartId(): CartId
+    public function getCart(): Cart
     {
-        return $this->cart_id;
+        return $this->cart;
     }
 
     /**
