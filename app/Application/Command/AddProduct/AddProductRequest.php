@@ -5,11 +5,11 @@ namespace App\Application\Command\AddProduct;
 class AddProductRequest
 {
     public function __construct(
-        int $finalTotal,
-        int $shipmentFee,
-        string $origin,
-        string $destination,
-        string $status
+        string $name,
+        int $price,
+        int $weight,
+        int $stock,
+        string $description
     ) {
     }
 }
