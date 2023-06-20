@@ -14,7 +14,10 @@ class Product
 
 
     private string $description;
-    private string $photo_url;
+
+    private string $photourl;
+
+
 
 
     /**
@@ -99,16 +102,19 @@ class Product
      */
     public function getPhotourl(): string
     {
-        return $this->photo_url;
+
+        return $this->photourl;
     }
 
     /**
-     * @param string $photo_url
+     * @param string $photourl
      */
-    public function setPhotourl(string $photo_url): void
+    public function setPhotourl(string $photourl): void
     {
-        $this->photo_url = $photo_url;
+        $this->photourl = $photourl;
+        return $this->photo_url;
     }
+
 
 
     /**
@@ -126,7 +132,9 @@ class Product
         $this->weight = $weight;
         $this->stock = $stock;
         $this->description = $description;
-        $this->photo_url = $photourl;
+
+        $this->photourl = $photourl;
+
     }
 
     public function updateStock(int $stock): void
@@ -144,6 +152,7 @@ class Product
         $this->weight = $weight;
         $this->stock = $stock;
         $this->description = $description;
-        $this->photo_url = $photourl;
+        $this->photourl = $photourl;
+
     }
 }
