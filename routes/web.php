@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SellerDashBoardController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,21 +48,14 @@ Route::get('/payment', function () {
     return view('cart.payment');
 });
 
-
-Route::get('/order', function () {
-    return view('order.main');
-});
+Route::get('/order', [OrderController::class, 'BuyerViewAll'])->name('buyer_order');
 // Route untuk Seller
 // TODO:Sesuaikan data dengan backend
-Route::get('/seller', function () {
-    return view('seller.main');
-});
+Route::get('/seller', [ProductController::class, 'testviewall'])->name('seller_product');
+Route::get('/seller/product/edit/{ProductId:uuid}', [ProductController::class, 'testeditid'])->name('seller_editproduct');
+
 Route::get('/seller/add-coupon', function () {
     return view('seller.add-coupon');
 });
-Route::get('/seller/add-product', function () {
-    return view('seller.add-product');
-});
-Route::get('/seller/order', function () {
-    return view('seller.order');
-});
+Route::get('/seller/add-product', [ProductController::class, 'Add'])->name('seller_addproduct');
+Route::get('/seller/order', [OrderController::class, 'SellerViewAll'])->name('seller_order');

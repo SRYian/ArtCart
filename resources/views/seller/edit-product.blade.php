@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller add product</title>
+    <title>Seller Edit product</title>
     @vite('resources/css/app.css')
 
 </head>
@@ -18,7 +18,7 @@
     </section>
 
     <div class="flex flex-col gap-4 items-center justify-evenly p-10">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">ADD NEW PRODUCT</h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">EDIT PRODUCT</h5>
         <form class="w-100" id="input" class="my-10" method="post">
             <div class="flex w-100 space-x-2 justify-evenly">
                 <div class="flex items-start justify-center">
@@ -37,15 +37,15 @@
 
                 <div class="flex flex-col space-y-2">
                     <label for="name">Name</label>
-                    <input required name="name" placeholder="dusk" id="name" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
+                    <input required name="name" value={{$product->getName()}} id="name" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
                     <label for="price">Price</label>
-                    <input required name="price" placeholder="1000" id="price" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
+                    <input required name="price" value={{$product->getPrice()}} id="price" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
                     <label for="weight">Weight</label>
-                    <input required name="weight" placeholder="1" id="weight" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" >
+                    <input required name="weight" value={{$product->getWeight()}} id="weight" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" >
                     <label for="quantity">Stock</label>
-                    <input required name="stock" type="number" placeholder="1"  id="qty" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" >
+                    <input required name="stock" type="number" value={{$product->getStock()}}  id="qty" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" >
                     <label for="description">Description</label>
-                    <textarea required name="description" rows="4" cols="5" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    <textarea required name="description" rows="4" cols="5" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">{{$product->getDescription()}}</textarea>
                 </div>
             </div>
         </form>
