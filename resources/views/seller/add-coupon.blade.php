@@ -20,26 +20,28 @@
     <div class="flex flex-col items-center justify-around p-10">
 
         <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">ADD NEW COUPON CODE</h5>
-        <form id="input" class="my-10">
+        <form id="input" method="POST" class="my-10">
             <div class="flex space-x-2 justify-center">
                 <div class="flex flex-col space-y-2">
                     <label for="name">Code</label>
-                    <input required name="code" id="code" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
+                    <input required name="couponCode" id="code" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
 
-                    <label for="1ty">Max uses</label>
-                    <input type="number" id="maxuse" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="1" required>
+                    <label for="maxuse">Max uses</label>
+                    <input type="number" name="maxUse" class="px-2 py-4 bg-gray-200  border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="1" required>
 
                     <label for="price_cut">Price</label>
-                    <input required name="price_cut" id="price_cut" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
+                    <input required name="priceCut" id="price_cut" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
 
-                    <label for="valid_date">Price</label>
-                    <input type="date" id="valid_date" name="valid_date" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300" value="2023-07-22" min="2023-01-01" max="2023-12-31">
+                    <label for="valid_date">Valid Until</label>
+                    <input type="date" id="validDate" name="valid_date" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300" value="2023-07-22" min="2023-01-01" max="2023-12-31">
                 </div>
             </div>
         </form>
     </div>
     <div class="flex m-4 justify-around">
-        <button type="submit" class="greyButton">BACK</button>
+        <a href="/seller">
+            <button type="submit" class="greyButton">BACK</button>
+        </a>
         <button type="submit" form="input" class="greyButton">OK</button>
     </div>
 </body>
