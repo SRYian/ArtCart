@@ -112,7 +112,7 @@ class Product
     public function setPhotourl(string $photourl): void
     {
         $this->photourl = $photourl;
-        return $this->photo_url;
+        // return $this->photo_url;
     }
 
 
@@ -134,7 +134,6 @@ class Product
         $this->description = $description;
 
         $this->photourl = $photourl;
-
     }
 
     public function updateStock(int $stock): void
@@ -153,6 +152,5 @@ class Product
         $this->stock = $stock;
         $this->description = $description;
         $this->photourl = $photourl;
-
     }
 }
