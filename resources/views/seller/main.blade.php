@@ -38,19 +38,27 @@
             </tr>
         </thead>
 
-{{--        <tbody>--}}
-{{--            <tr class="bg-gray-50 border-b hover:bg-gray-100">--}}
-{{--                <td class="px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>--}}
-{{--                <td class="px-6 py-4">Rp75.000,00</td>--}}
-{{--                <td class="px-6 py-4">20 </td>--}}
-{{--                <td class="px-6 py-4">--}}
-{{--                    <button class="bluebutton text-white">EDIT</button>--}}
-{{--                    <button class="redbutton text-white">REMOVE</button>--}}
-{{--                </td>--}}
-{{--            </tr>--}}
-{{--        </tbody>--}}
+        <tbody>
+            @foreach ($products as $product)
+            <tr class="bg-gray-50 border-b hover:bg-gray-100">
+                <td class="px-6 py-4">{{ $product->getName() }}</td>
+                <td class="px-6 py-4">{{ $product->getPrice() }}</td>
+                <td class="px-6 py-4">{{ $product->getStock() }} </td>
+                <td class="px-6 py-4">
+                    <a href="/seller/product/edit/{{$product->getId()->id()}}">
+                        <button class="bluebutton text-white">EDIT</button>
+                    </a>
+                    <a href="">
+                        <button class="redbutton text-white">REMOVE</button>
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
-    <button type="submit" class="greyButton">BACK</button>
+    <a href="/home">
+        <button type="submit" class="greyButton">HOME</button>
+    </a>
 
 </body>
 

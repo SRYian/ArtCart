@@ -32,22 +32,46 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($orders as $order)
+
                     <tr class="bg-gray-50 border-b hover:bg-gray-100">
-                        <td class="px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                        <td class="px-6 py-4">Rp75.000,00</td>
-                        <td class="px-6 py-4">1</td>
+                        <td class="px-6 py-4">{{ $order->name }}</td>
+                        <td class="px-6 py-4">{{ $order->price }}</td>
+                        <td class="px-6 py-4">{{ $order->qty }}</td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-orange-500 mr-2"></div> Awaiting payment
+                                @switch($order->status)
+                                    @case('SELESAI')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>
+                                        @break
+                                        
+                                    @case('BELUM SELESAI')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-orange-500 mr-2"></div>
+                                        @break
+                                
+                                    @case('PROSES')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-orange-500 mr-2"></div>
+                                        @break
+                                    @case('PENGIRIMAN')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-blue-500 mr-2"></div>
+                                        @break
+                                
+                                    @default
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
+
+                                @endswitch
+                                 {{ $order->status }}
                             </div>
                         </td>
                     </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
         <div class="col-span-1 max-w-sm bg-gray-200 rounded-lg p-12 flex flex-col space-y-10 justify-start shadow-md">
             <p class="font-bold">SUMMARY</p>
-            <p>Total: Rp0</p>
+            <p>Total: Rp{{$total}}</p>
         </div>
 
     </div>
