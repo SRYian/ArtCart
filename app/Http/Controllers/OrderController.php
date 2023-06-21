@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application\Query\Order\OrderQueryInterface;
 use App\Core\Models\Cart\Cart;
 use App\Core\Models\Cart\CartId;
 use App\Core\Models\CartDetails\CartDetails;
@@ -16,7 +17,7 @@ use Ramsey\Uuid\Uuid;
 
 class OrderController extends Controller
 {
-    public function __construct(private OrderRepositoryInterface $orderRepository)
+    public function __construct(private OrderRepositoryInterface $orderRepository, private OrderQueryInterface $orderQueryInterface)
     {
     }
     public function SellerViewAll()
@@ -33,12 +34,13 @@ class OrderController extends Controller
     {
         // $orderArray = array((object)array('name' => 'THE BOI', 'price' => '10000', 'qty' => '1', 'status' => Order::SELESAI), (object)array('name' => 'THE GUY', 'price' => '10', 'qty' => '10', 'status' => Order::PENGIRIMAN));
         $userId = '3cdab866-1015-11ee-be56-0242ac120002';
-        $orderArray = $this->orderRepository->show(new UserId($userId));
+        // $orderArray = $this->orderRepository->show(new UserId($userId));
+        $orderArray = $this->orderQueryInterface->execute(new UserId($userId));
         $finaltotal = $orderArray[0]->final_total ?? null;
         // TODO:change to command or something
         return view('order.main', [
             'orders' => $orderArray,
-            'total' => $finaltotal
+            'total' => 100
         ]);
     }
 }
