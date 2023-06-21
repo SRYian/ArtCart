@@ -158,6 +158,9 @@ class Product
         $this->weight = $weight;
         $this->stock = $stock;
         $this->description = $description;
-        $this->photourl = $photourl;
+        if ($photourl) {
+            # code...
+            $this->photourl = $photourl;
+        }
     }
 }

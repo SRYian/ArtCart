@@ -4,6 +4,7 @@ namespace App\Infrastructure\Repository\MySQL;
 
 use App\Core\Models\Order\Order;
 use App\Core\Models\Order\OrderId;
+use App\Core\Models\User\UserId;
 use Illuminate\Support\Facades\DB;
 
 class OrderRepository implements \App\Core\Repository\OrderRepositoryInterface
@@ -25,15 +26,24 @@ class OrderRepository implements \App\Core\Repository\OrderRepositoryInterface
         DB::table('order')->insert($payload);
     }
 
-    public function show(): array
+    public function show(UserId $userId): array
     {
         // TODO: Implement show() method.
-        $row = DB::table('product')->select(['final_total', 'shipment_fee', 'origin', 'destination', 'status']);
+        //add order status too in table
+        $sql = "SELECT p.name, cd.price, cd.quantity, o.final_total
+        FROM cart_details cd
+        INNER JOIN orders o ON cd.user_id=o.sell_user_id
+        INNER JOIN product p ON cd.user_id=p.user_id
+        WHERE cd.user_id=:id_user";
+
+        $row = DB::select($sql, [
+            'id_user' => $userId->id()
+        ]);
 
         $orderList = array();
 
         foreach ($row as $order) {
-            $orderList[] = new Order(new OrderId($order->order_id), $order->final_total, $order->shipment_fee, $order->origin, $order->destination, $order->status);
+            $orderList[] = (object)array('name' => $order->name, 'price' => $order->price, 'qty' => $order->quantity, 'status' => Order::SELESAI, 'final_total' => $order->final_total);
         }
 
         return $orderList;

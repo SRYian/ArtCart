@@ -5,59 +5,110 @@ declare(strict_types=1);
 namespace App\Core\Models\Coupon;
 
 use App\Core\Models\User\UserId;
-
-use App\Core\Models\Coupon\CouponId;
+use DateTime;
+use Carbon\Carbon;
+use Exception;
 
 class Coupon
 {
-    private CouponId $coupon_code;
-    private UserId $user_id;
+    private CouponCode $couponCode;
+    private UserId $userId;
     private float $discount;
-    private string $description;
-    private string $photourl;
+    private int $maxUse;
 
-    public function __construct(
-        CouponId $coupon_code,
-        UserId $user_id,
-        float $discount,
-        string $description,
-        string $photourl,
-    ){
-        $this->coupon_code = $coupon_code;
-        $this->user_id = $user_id;
-        $this->discount = $discount;
-        $this->description = $description;
-        $this->photourl = $photourl;
-    }
 
-    public function getCouponCode(): CouponId
+    private int $uses;
+    private DateTime $berlakuSampai;
+    private DateTime $berlakuDari;
+    /**
+     * @return CouponCode
+     */
+    public function getCouponCode(): CouponCode
     {
-        return $this->coupon_code;
+        return $this->couponCode;
     }
 
+    /**
+     * @return UserId
+     */
     public function getUserId(): UserId
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
+    /**
+     * @return float
+     */
     public function getDiscount(): float
     {
         return $this->discount;
     }
 
-    public function getDescription(): string
+    /**
+     * @return int
+     */
+    public function getMaxUse(): int
     {
-        return $this->description;
+        return $this->maxUse;
     }
 
-    public function getPhotoUrl(): string
+    /**
+     * @return int
+     */
+    public function getUses(): int
     {
-        return $this->photourl;
+        return $this->uses;
     }
 
-    public function addCoupon() 
+    /**
+     * @return DateTime
+     */
+    public function getBerlakuSampai(): DateTime
     {
-        // todo
+        return $this->berlakuSampai;
     }
 
+    /**
+     * @return DateTime
+     */
+    public function getBerlakuDari(): DateTime
+    {
+        return $this->berlakuDari;
+    }
+
+    /**
+     * @param CouponCode $couponCode
+     * @param UserId $userId
+     * @param float $discount
+     * @param string $description
+     * @param string $photoUrl
+     */
+    public function __construct(CouponCode $couponCode, UserId $userId, float $discount, int $maxUse, DateTime $berlakuSampai)
+    {
+        $this->couponCode = $couponCode;
+        $this->userId = $userId;
+        $this->discount = $discount;
+        // $this->photoUrl = $photoUrl;
+        $now = new DateTime();
+        if (abs($now->diff($berlakuSampai)->days) > 2 && abs($now->diff($berlakuSampai)->days) < 14 && $maxUse > 1) {
+            $this->maxUse = $maxUse;
+            $this->uses = $maxUse;
+            $this->berlakuDari = $now;
+            $this->berlakuSampai = $berlakuSampai;
+        } else {
+            throw new Exception('kupon_tidak_valid');
+        }
+    }
+    public function IsValid()
+    {
+        if (abs($this->berlakuDari->diff($this->berlakuSampai)->days) > 14 || $this->uses > $this->maxUse) {
+            return false;
+        }
+        return true;
+    }
+
+    public function AddUse()
+    {
+        $this->uses += 1;
+    }
 }

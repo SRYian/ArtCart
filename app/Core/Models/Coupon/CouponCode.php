@@ -7,6 +7,14 @@ class CouponCode
     private string $code;
 
     /**
+     * @return string
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
      * @param string $code
      */
     public function __construct(?string $code)
