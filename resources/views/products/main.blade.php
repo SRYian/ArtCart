@@ -73,7 +73,14 @@
             <div class="max-w-sm bg-gray-300 rounded-lg p-12 flex flex-col space-y-10 justify-center shadow-md">
                 <p class="font-bold">SUMMARY</p>
                 <p>Subtotal: Rp{{ $product->getPrice() }}</p>
-                <button type="submit" class="greyButton">BUY</button>
+
+                <form action="/cart" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->getId()->id() }}">
+                    <button type="submit" class="greyButton">BUY</button>
+
+                </form>
+
             </div>
         </section>
     </div>
