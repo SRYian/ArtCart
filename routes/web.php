@@ -59,7 +59,7 @@ Route::get('/seller', [ProductController::class, 'testViewAll'])->name('seller_p
 Route::get('/seller/product/edit/{ProductId:uuid}', [ProductController::class, 'Edit'])->name('seller_editproduct');
 Route::post('/seller/product/edit/{ProductId:uuid}', [ProductController::class, 'EditAction']);
 
-Route::get('/seller/add-coupon', [CouponController::class, 'ViewAll'])->name('seller_addcoupon');
+Route::get('/seller/add-coupon', [CouponController::class, 'Add'])->name('seller_addcoupon');
 Route::post('/seller/add-coupon', [CouponController::class, 'AddAction']);
 Route::get('/seller/add-product', [ProductController::class, 'Add'])->name('seller_addproduct');
 Route::post('/seller/add-product', [ProductController::class, 'AddAction']);
