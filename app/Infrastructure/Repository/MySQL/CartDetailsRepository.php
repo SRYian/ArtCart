@@ -26,7 +26,16 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
         DB::table('cart_details')->insert($payload);
     }
 
-    private function constructPayloadWithoutId(CartDetails $cartDetails)
+    public function update(CartDetails $cartDetails): void
+    {
+        $payload = $this->constructPayloadWithoutId($cartDetails);
+        $payload['cart_details_id'] = $cartDetails->getCartDetailsId()->id();
+        DB::table('cart_details')
+            ->where('product_id', $cartDetails->getCartDetailsId()->id())
+            ->update($payload);
+    }
+
+    public function constructPayloadWithoutId(CartDetails $cartDetails)
     {
         // might throw error
         return [
@@ -95,11 +104,6 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
             $product->getName(),
             $product->getStock()
         );
-    }
-
-    public function update(CartDetails $cartDetails): void
-    {
-        // TODO: Implement update() method.
     }
 
     public function delete(CartDetails $cartDetails): void

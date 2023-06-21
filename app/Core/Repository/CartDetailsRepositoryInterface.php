@@ -13,6 +13,8 @@ interface CartDetailsRepositoryInterface
     public function byCartId(CartId $cartId): array;
     public function save(CartDetails $cartDetails): void;
     public function update(CartDetails $cartDetails): void;
+    public function constructPayloadWithoutId(CartDetails $cartDetails);
+
     public function delete(CartDetails $cartDetails): void;
     public function byCartIdAndProductId(CartId $cartId, ProductId $productId): ?CartDetails;
 
