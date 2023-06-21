@@ -17,14 +17,14 @@ class CouponController extends Controller
         private CouponRepositoryInterface $couponRepositoryInterface
     ) {
     }
-    public function ViewAll()
+    public function Add()
     {
         // return these params
 
         // TODO:change to command or something
         return view('seller.add-coupon');
     }
-    public function SubmitAction(Request $request, AddCouponCommand $command)
+    public function AddAction(Request $request, AddCouponCommand $command)
     {
 
         // public string $couponCode,
@@ -40,7 +40,7 @@ class CouponController extends Controller
         $priceCut = $request->input('priceCut');
         $validDate = $request->input('validDate');
         $validDate = new DateTime($validDate);
-        $addrequest = new AddCouponRequest($code, new UserId($userId), $priceCut, $maxUse, $validDate);
+        $addrequest = new AddCouponRequest($code, $userId, $priceCut, $maxUse, $validDate);
         try {
             $command->execute($addrequest);
         } catch (Exception $e) {
