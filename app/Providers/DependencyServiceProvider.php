@@ -5,9 +5,11 @@ namespace App\Providers;
 
 
 use App\Application\Query\Seller\SellerAccountQueryInterface;
+use App\Core\Repository\CategoryRepositoryInterface;
 use App\Core\Repository\OrderRepositoryInterface;
 use App\Core\Repository\ProductRepositoryInterface;
 use App\Infrastructure\Query\MySQL\SellerAccountQuery;
+use App\Infrastructure\Repository\MySQL\CategoryRepository;
 use App\Infrastructure\Repository\MySQL\ProductRepository;
 use App\Infrastructure\Repository\MySQL\OrderRepository;
 
@@ -23,5 +25,6 @@ class DependencyServiceProvider extends ServiceProvider
         //Service
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
     }
 }
