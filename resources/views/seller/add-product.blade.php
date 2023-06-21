@@ -19,7 +19,8 @@
 
     <div class="flex flex-col gap-4 items-center justify-evenly p-10">
         <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">ADD NEW PRODUCT</h5>
-        <form class="w-100" id="input" class="my-10" method="post">
+        <form class="w-100" id="input" class="my-10" method="POST">
+            @csrf
             <div class="flex w-100 space-x-2 justify-evenly">
                 <div class="flex items-start justify-center">
                     <label for="dropzone-file" class="p-4 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
