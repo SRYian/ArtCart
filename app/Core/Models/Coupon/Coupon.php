@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Models\Coupon;
 
 use App\Core\Models\User\UserId;
+
 use App\Core\Models\Coupon\CouponId;
 
 class Coupon
@@ -58,4 +59,5 @@ class Coupon
     {
         // todo
     }
+
 }

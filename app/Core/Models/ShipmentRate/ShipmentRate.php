@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Core\Models\ShipmentRate;
 
+use App\Core\Models\Shipment\Shipment;
+use App\Core\Models\Shipment\ShipmentId;
+
 class ShipmentRate
 {
+
     private ShipmentRateId $rate_id;
     private int $shipment_id;
     private string $city1;

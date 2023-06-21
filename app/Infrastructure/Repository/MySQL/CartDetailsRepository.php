@@ -13,7 +13,7 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
         $payload = [
 
         ];
-        DB:table('cart_details')->insert($payload);
+        DB::table('cart_details')->insert($payload);
     }
 
     public function byId(CartDetailsId $cartDetailsId): void

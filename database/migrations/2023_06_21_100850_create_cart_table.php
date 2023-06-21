@@ -14,12 +14,13 @@ class CreateCartTable extends Migration
     public function up()
     {
         Schema::create('cart', function (Blueprint $table) {
-            $table->char('cart_id', 13)->primary();
+            $table->uuid('cart_id')->primary();
             $table->string('coupon_code', 10)->nullable();
-            $table->char('user_id', 13);
+            $table->uuid('user_id');
             $table->integer('final_total')->nullable();
             
-            $table->foreign('user_id', 'cart_buyer')->references('user_id')->on('buyer_account');
+            $table->foreign('user_id', 'cart_buyer')->references('user_id')->on('buyer_account')->onUpdate('cascade');
+            $table->foreign('coupon_code', 'coupon_code')->references('coupon_code')->on('coupon')->onUpdate('cascade');
         });
     }
 

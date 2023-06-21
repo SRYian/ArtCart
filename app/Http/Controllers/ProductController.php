@@ -7,8 +7,12 @@ use App\Application\Command\AddProduct\AddProductRequest;
 use App\Application\Command\EditProduct\EditProductCommand;
 use App\Application\Command\EditProduct\EditProductRequest;
 use App\Application\Command\ViewProduct\ViewProductCommand;
+use App\Application\Query\Seller\SellerAccountQueryInterface;
 use App\Core\Models\Product\Product;
 use App\Core\Models\Product\ProductId;
+use App\Core\Models\User\Role;
+use App\Core\Models\User\User;
+use App\Core\Models\User\UserId;
 use App\Core\Repository\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\Array_;
@@ -18,14 +22,28 @@ use Exception;
 class ProductController extends Controller
 {
     // this is for uhh..individual products I guess
-    public function __construct(private ProductRepositoryInterface $productRepository)
+    public function __construct(
+        private SellerAccountQueryInterface $sellerAccountQuery,
+        private ProductRepositoryInterface $productRepository
+    )
     {
     }
     // mock funtion for testing UI
     public function testViewAll()
     {
-        $productArray = array(new Product(new ProductId(Uuid::uuid4()), 'a', 23, 11, 2, 'addxcyv', '$product->photourl'), new Product(new ProductId(Uuid::uuid4()), '你好同学们', 23, 11, 2, 'addxcyv', '$product->photourl'));
+        // This is only mock
+        $user = new User(
+            new UserId("3cdab866-1015-11ee-be56-0242ac120002"),
+            "DuffAldri Ganteng",
+            "dup@mail.com",
+            "123qwe123",
+            new Role("s")
+        );
+        $seller = $this->sellerAccountQuery->execute($user->getUserId());
+//        $productArray = array(new Product(new ProductId(Uuid::uuid4()), 'a', 23, 11, 2, 'addxcyv', '$product->photourl'), new Product(new ProductId(Uuid::uuid4()), '你好同学们', 23, 11, 2, 'addxcyv', '$product->photourl'));
+        $productArray = $this->productRepository->showByUserId($user->getUserId());
         return view('seller.main', [
+            'seller' => $seller,
             'products' => $productArray,
         ]);
     }

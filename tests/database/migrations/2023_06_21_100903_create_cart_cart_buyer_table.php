@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryTable extends Migration
+class CreateCartCartBuyerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('category', function (Blueprint $table) {
-            $table->char('category_id', 13)->primary();
-            $table->string('name', 64);
+        Schema::table('cart', function (Blueprint $table) {
+            $table->foreign('user_id', 'cart_buyer')->references('user_id')->on('buyer_account')->onUpdate('cascade');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category');
+        Schema::table('cart', function(Blueprint $table){
+            $table->dropForeign('cart_buyer');
+        });
     }
 }

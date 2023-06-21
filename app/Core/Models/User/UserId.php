@@ -10,11 +10,11 @@ class UserId
 
     public function __construct(string $id)
     {
-        if (Uuid::isValid($id)) {
+//        if (Uuid::isValid($id)) {
             $this->id = $id;
-        } else {
-            throw new \InvalidArgumentException("Invalid CartDetailsId format.");
-        }
+//        } else {
+//            throw new \InvalidArgumentException("Invalid CartDetailsId format.");
+//        }
     }
 
     public function id(): string

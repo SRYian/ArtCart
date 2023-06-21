@@ -10,7 +10,7 @@ use App\Core\Models\User\UserId;
 class Cart
 {
     private CartId $cart_id;
-    private string $coupon_code;
+    private ?string $coupon_code;
     private UserId $user_id;
     private int $final_total;
 
