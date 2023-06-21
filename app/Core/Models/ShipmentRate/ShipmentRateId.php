@@ -1,19 +1,25 @@
 <?php
 
+
+declare(strict_types=1);
+
 namespace App\Core\Models\ShipmentRate;
 
 use Ramsey\Uuid\Uuid;
 
 class ShipmentRateId
 {
-    private string $id;
+
+    private $id;
+
 
     public function __construct(string $id)
     {
         if (Uuid::isValid($id)) {
             $this->id = $id;
         } else {
-            throw new \InvalidArgumentException("Invalid CartId format.");
+            throw new \InvalidArgumentException("Invalid ShipmentRateId format.");
+
         }
     }
 
@@ -22,8 +28,10 @@ class ShipmentRateId
         return $this->id;
     }
 
-    public function equals(ShipmentRateId $classId): bool
+
+    public function equals(ShipmentRateId $shipmentRateId): bool
     {
-        return $this->id === $classId->id;
+        return $this->id === $shipmentRateId->id;
+
     }
 }
