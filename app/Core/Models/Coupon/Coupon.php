@@ -6,29 +6,58 @@ namespace App\Core\Models\Coupon;
 
 use App\Core\Models\User\UserId;
 
+use App\Core\Models\Coupon\CouponId;
+
 class Coupon
 {
-    private CouponCode $couponCode;
-    private UserId $userId;
+    private CouponId $coupon_code;
+    private UserId $user_id;
     private float $discount;
     private string $description;
-    private string $photoUrl;
+    private string $photourl;
 
-    /**
-     * @param CouponCode $couponCode
-     * @param UserId $userId
-     * @param float $discount
-     * @param string $description
-     * @param string $photoUrl
-     */
-    public function __construct(CouponCode $couponCode, UserId $userId, float $discount, string $description, string $photoUrl)
-    {
-        $this->couponCode = $couponCode;
-        $this->userId = $userId;
+    public function __construct(
+        CouponId $coupon_code,
+        UserId $user_id,
+        float $discount,
+        string $description,
+        string $photourl,
+    ){
+        $this->coupon_code = $coupon_code;
+        $this->user_id = $user_id;
         $this->discount = $discount;
         $this->description = $description;
-        $this->photoUrl = $photoUrl;
+        $this->photourl = $photourl;
     }
 
+    public function getCouponCode(): CouponId
+    {
+        return $this->coupon_code;
+    }
+
+    public function getUserId(): UserId
+    {
+        return $this->user_id;
+    }
+
+    public function getDiscount(): float
+    {
+        return $this->discount;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getPhotoUrl(): string
+    {
+        return $this->photourl;
+    }
+
+    public function addCoupon() 
+    {
+        // todo
+    }
 
 }
