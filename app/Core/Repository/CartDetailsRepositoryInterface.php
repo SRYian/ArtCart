@@ -5,6 +5,7 @@ namespace App\Core\Repository;
 use App\Core\Models\Cart\CartId;
 use App\Core\Models\CartDetails\CartDetails;
 use App\Core\Models\CartDetails\CartDetailsId;
+use App\Core\Models\Product\ProductId;
 use Illuminate\Support\Facades\DB;
 
 interface CartDetailsRepositoryInterface
@@ -13,5 +14,6 @@ interface CartDetailsRepositoryInterface
     public function save(CartDetails $cartDetails): void;
     public function update(CartDetails $cartDetails): void;
     public function delete(CartDetails $cartDetails): void;
+    public function byCartIdAndProductId(CartId $cartId, ProductId $productId): ?CartDetails;
 
 }

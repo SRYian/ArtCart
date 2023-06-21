@@ -58,6 +58,34 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
         return $cartDetailsList;
     }
 
+    public function byCartIdAndProductId(CartId $cartId, ProductId $productId): ?CartDetails
+    {
+//        $rows = DB::table('cart_details')->select(['cart_details_id', 'quantity', 'price', 'user_id', 'product_id', 'order_id', 'cart_id'])
+//        ->where('cart_id', $cartId->id());
+        $sql = "SELECT *
+                FROM artcart.cart_details
+                WHERE cart_id = :id AND product_id = :prodId";
+        $item = DB::select($sql, [
+            'id' => $cartId->id(),
+            'prodId' => $productId->id()
+        ]);
+
+        if($item[0] == null) return null;
+
+
+        $product = $this->productRepository->byId($productId);
+        return new CartDetails(
+            new CartDetailsId($item[0]->cart_details_id),
+            $cartId,
+            new UserId($item[0]->user_id),
+            new ProductId($item[0]->product_id),
+            $item[0]->quantity,
+            $item[0]->price,
+            $product->getName(),
+            $product->getStock()
+        );
+    }
+
     public function update(CartDetails $cartDetails): void
     {
         // TODO: Implement update() method.
