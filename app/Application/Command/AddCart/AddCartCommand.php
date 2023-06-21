@@ -63,16 +63,25 @@ class AddCartCommand
                 DB::rollBack();
                 throw $exception;
             }
-            DB::commit();
 
         } else {
             $newCartDetails = $cartDetails;
             $newCartDetails->setQuantity($cartDetails->getQuantity() + 1);
             $newCartDetails->setPrice($product->getPrice() * $newCartDetails->getQuantity());
-        }
-        $cart = $this->cartRepository->byId(new CartId($buyer->curr_cart_id));
 
-        DB::beginTransaction();
+            DB::beginTransaction();
+            try {
+                Log::debug('f');
+                $this->cartDetailsRepository->update($newCartDetails);
+            } catch (Throwable $exception) {
+                DB::rollBack();
+                throw $exception;
+            }
+        }
+        DB::commit();
+//        $cart = $this->cartRepository->byId(new CartId($buyer->curr_cart_id));
+
+//        DB::beginTransaction();
 
     }
 }

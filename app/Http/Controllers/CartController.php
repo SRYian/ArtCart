@@ -54,10 +54,18 @@ class CartController extends Controller
         $addRequest = new AddCartRequest($this->userId, $productId);
         try {
             $command->execute($addRequest);
+            $buyerAccount = $this->buyerAccountQuery->execute($this->userId);
+            $cartId = new CartId($buyerAccount->curr_cart_id);
+            $cart = $this->cartRepository->byId($cartId);
+            $cartDetails = $this->cartDetailsRepository->byCartId($cartId);
+            return view('cart.main', [
+                'cart' => $cart,
+                'cartDetails' => $cartDetails
+            ]);
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage())->withInput();
         }
-        return view('cart.main');
+
     }
 
     public function ViewAll()
