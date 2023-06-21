@@ -22,8 +22,8 @@ class CartId
         return $this->id;
     }
 
-    public function equals(OrderId $orderId): bool
+    public function equals(CartId $id): bool
     {
-        return $this->id === $orderId->id;
+        return $this->id === $id->id;
     }
 }

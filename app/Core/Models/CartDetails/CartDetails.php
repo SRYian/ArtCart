@@ -10,26 +10,48 @@ use App\Core\Models\User\UserId;
 class CartDetails
 {
     private CartDetailsId $cart_details_id;
-    private Cart $cart;
+    private CartId $cartId;
     private UserId $user_id;
     private ProductId $product_id;
     private int $quantity;
     private int $price;
+    private string $name;
+    private int $stock;
 
     public function __construct(
         CartDetailsId $cart_details_id,
-        Cart $cart,
+        CartId $cartId,
         UserId $user_id,
         ProductId $product_id,
         int $quantity,
         int $price,
+        string $name,
+        int $stock
     ) {
         $this->cart_details_id = $cart_details_id;
-        $this->cart = $cart;
+        $this->cartId = $cartId;
         $this->user_id = $user_id;
         $this->product_id = $product_id;
         $this->quantity = $quantity;
         $this->price = $price;
+        $this->name = $name;
+        $this->stock = $stock;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStock(): int
+    {
+        return $this->stock;
     }
 
     /**

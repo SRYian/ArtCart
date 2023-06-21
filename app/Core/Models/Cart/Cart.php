@@ -4,6 +4,7 @@ namespace App\Core\Models\Cart;
 
 use App\Core\Models\CartDetails\CartDetails;
 use App\Core\Models\CartDetails\CartDetailsId;
+use App\Core\Models\Coupon\CouponCode;
 use App\Core\Models\Product\ProductId;
 use App\Core\Models\User\UserId;
 
@@ -18,6 +19,7 @@ class Cart
     public function __construct(
         CartId $cart_id,
         UserId $user_id,
+        ?CouponCode $couponCode = null,
         int $final_total = 0
     ) {
         $this->cart_id = $cart_id;
@@ -33,7 +35,7 @@ class Cart
         $this->final_total += $quantity * $price;
         return new CartDetails(
             cart_details_id: new CartDetailsId(),
-            cart: $this,
+            cartId: $this->cart_id,
             user_id: $this->user_id,
             product_id: $product_id,
             quantity: $quantity,

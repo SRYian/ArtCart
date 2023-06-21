@@ -3,33 +3,35 @@
 namespace App\Core\Models\User\BuyerAccount;
 
 use App\Core\Models\Cart\Cart;
+use App\Core\Models\Cart\CartId;
 use App\Core\Models\User\User;
+use App\Core\Models\User\UserId;
 
 class BuyerAccount
 {
-    private User $user;
+    private UserId $userId;
     private string $shipping_address;
     private string $phone;
-    private Cart $current_cart;
+    private CartId $current_cart_id;
 
     public function __construct(
-        User $user,
+        UserId $userId,
         string $shipping_address,
         string $phone,
-        Cart $current_cart
+        CartId $current_cart_id
     ) {
-        $this->user = $user;
+        $this->userId = $userId;
         $this->shipping_address = $shipping_address;
         $this->phone = $phone;
-        $this->current_cart = $current_cart;
+        $this->$current_cart_id = $current_cart_id;
     }
 
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUserId(): UserId
     {
-        return $this->user;
+        return $this->userId;
     }
 
     /**

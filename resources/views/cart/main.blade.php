@@ -34,15 +34,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $order)
+                    @foreach ($cartDetails as $cartDetail)
 
                     <tr class="bg-gray-50 border-b hover:bg-gray-100">
-                        <td class="px-6 py-4">{{$order->name}}</td>
-                        <td class="px-6 py-4">{{$order->price}}</td>
+                        <td class="px-6 py-4">{{$cartDetail->getName()}}</td>
+                        <td class="px-6 py-4">{{$cartDetail->getPrice()}}</td>
                         <td class="px-6 py-4">
-                            <input placeholder={{$order->qty}} required type="number" id="first_product" class="bg-gray-200 w-14 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" >
+                        <input placeholder={{$cartDetail->getQuantity()}} required type="number" id="first_product" class="bg-gray-200 w-14 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" >
                         </td>
-                        <td class="px-6 py-4">{{$order->status}}</td>
+                        <td class="px-6 py-4">{{ $cartDetail->getStock() <= 0 ? "Not Available" : "Available" }}</td>
                         <td class="px-6 py-4">
                             <button class="redbutton text-white">REMOVE</button>
                         </td>
@@ -57,8 +57,8 @@
         </div>
         <form method="POST" class="col-span-1 max-w-sm bg-gray-200 rounded-lg p-12 flex flex-col space-y-10 justify-start shadow-md">
             <p class="font-bold">SUMMARY</p>
-            <p>Items: {{$itemcount}}</p>
-            <p>Total: {{$total}}</p>
+{{--            <p>Items: {{$itemcount}}</p>--}}
+            <p>Total: {{$cart->getFinalTotal()}}</p>
             <div class="relative flex space-x-3">
                 <input type="text" id="default-review" class="block w-full p-4 text-sm text-gray-900 rounded-none bg-gray-300 focus:outline-none" placeholder="Enter coupon code">
                 <button type="submit" class="greyButton ">Submit</button>
@@ -67,7 +67,7 @@
                 <button  type="submit" class="greyButton w-full">NEXT</button>
             </a>
         </form>
-        
+
 
     </div>
 </body>
