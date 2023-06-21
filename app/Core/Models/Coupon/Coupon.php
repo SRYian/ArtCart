@@ -89,8 +89,8 @@ class Coupon
         $this->userId = $userId;
         $this->discount = $discount;
         // $this->photoUrl = $photoUrl;
-        $now = new DateTime('now');
-        if ($now->diff($berlakuSampai)->days > 2 || $now->diff($berlakuSampai)->days < 14 || $maxUse < 1) {
+        $now = new DateTime();
+        if (abs($now->diff($berlakuSampai)->days) > 2 && abs($now->diff($berlakuSampai)->days) < 14 && $maxUse > 1) {
             $this->maxUse = $maxUse;
             $this->uses = $maxUse;
             $this->berlakuDari = $now;
@@ -101,7 +101,7 @@ class Coupon
     }
     public function IsValid()
     {
-        if ($this->berlakuDari->diff($this->berlakuSampai)->days > 14 || $this->uses > $this->maxUse) {
+        if (abs($this->berlakuDari->diff($this->berlakuSampai)->days) > 14 || $this->uses > $this->maxUse) {
             return false;
         }
         return true;
