@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShipmentRateRateShipmentTable extends Migration
+class CreateCartCartBuyerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateShipmentRateRateShipmentTable extends Migration
      */
     public function up()
     {
-        Schema::table('shipment_rate', function (Blueprint $table) {
-            $table->foreign('shipment_id', 'rate_shipment')->references('rate_id')->on('shipment_rate');
+        Schema::table('cart', function (Blueprint $table) {
+            $table->foreign('user_id', 'cart_buyer')->references('user_id')->on('buyer_account')->onUpdate('cascade');
         });
     }
 
@@ -25,8 +25,8 @@ class CreateShipmentRateRateShipmentTable extends Migration
      */
     public function down()
     {
-        Schema::table('shipment_rate', function(Blueprint $table){
-            $table->dropForeign('rate_shipment');
+        Schema::table('cart', function(Blueprint $table){
+            $table->dropForeign('cart_buyer');
         });
     }
 }

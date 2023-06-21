@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Application\Query\Seller\SellerAccountQueryInterface;
+use App\Core\Models\User\Role;
 use App\Core\Models\User\User;
 use App\Core\Models\User\UserId;
 use App\Core\Repository\ProductRepositoryInterface;
@@ -22,11 +23,11 @@ class SellerDashboardController extends Controller
     public function index()
     {
         $user = new User(
-            new UserId("user_asdfv12j"),
+            new UserId("3cdab866-1015-11ee-be56-0242ac120002"),
             "DuffAldri Ganteng",
             "dup@mail.com",
             "123qwe123",
-            "s"
+            new Role("s")
         );
         $seller = $this->sellerAccountQuery->execute($user->getUserId());
         $products = $this->productRepository->showByUserId($user->getUserId());

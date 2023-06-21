@@ -14,11 +14,13 @@ class CreateShipmentRateTable extends Migration
     public function up()
     {
         Schema::create('shipment_rate', function (Blueprint $table) {
-            $table->char('rate_id', 13)->primary();
-            $table->char('shipment_id', 13);
+            $table->uuid('rate_id')->primary();
+            $table->uuid('shipment_id');
             $table->string('city1', 50);
             $table->string('city2', 50);
             $table->integer('pricekg');
+            
+            $table->foreign('shipment_id', 'rate_shipment')->references('shipment_id')->on('shipment');
         });
     }
 

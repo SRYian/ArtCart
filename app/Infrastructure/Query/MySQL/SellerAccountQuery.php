@@ -3,10 +3,11 @@
 namespace App\Infrastructure\Query\MySQL;
 
 use App\Application\Query\Seller\SellerAccountDto;
+use App\Application\Query\Seller\SellerAccountQueryInterface;
 use App\Core\Models\User\UserId;
 use Illuminate\Support\Facades\DB;
 
-class SellerAccountQuery implements \App\Application\Query\Seller\SellerAccountQueryInterface
+class SellerAccountQuery implements SellerAccountQueryInterface
 {
 
     public function execute(UserId $userId): ?SellerAccountDto
@@ -16,6 +17,7 @@ class SellerAccountQuery implements \App\Application\Query\Seller\SellerAccountQ
                 WHERE s.user_id = :id_user";
 
         $result = DB::select($sql, [
+//            'id_user' => $userId->id()
             'id_user' => $userId->id()
         ]);
 

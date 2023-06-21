@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShipmentTable extends Migration
+class CreateUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateShipmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('shipment', function (Blueprint $table) {
-            $table->char('shipment_id', 13)->primary();
+        Schema::create('user', function (Blueprint $table) {
+            $table->uuid('user_id')->primary();
             $table->string('name', 64);
-            $table->integer('price');
+            $table->string('email', 254);
+            $table->string('password', 32);
+            $table->char('role', 1);
         });
     }
 
@@ -27,6 +29,6 @@ class CreateShipmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipment');
+        Schema::dropIfExists('user');
     }
 }

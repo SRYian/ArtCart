@@ -70,7 +70,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function showByUserId(UserId $userId): array
     {
-        $sql = "SELECT p.user_id, p.shop_name, p.shop_address, p.phone
+        $sql = "SELECT *
                 FROM product as p
                 WHERE p.user_id = :id_user";
 

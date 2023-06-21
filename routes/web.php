@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
