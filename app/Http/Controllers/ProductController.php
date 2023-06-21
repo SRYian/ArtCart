@@ -25,8 +25,7 @@ class ProductController extends Controller
     public function __construct(
         private SellerAccountQueryInterface $sellerAccountQuery,
         private ProductRepositoryInterface $productRepository
-    )
-    {
+    ) {
     }
     // mock funtion for testing UI
     public function testViewAll()
@@ -40,7 +39,7 @@ class ProductController extends Controller
             new Role("s")
         );
         $seller = $this->sellerAccountQuery->execute($user->getUserId());
-//        $productArray = array(new Product(new ProductId(Uuid::uuid4()), 'a', 23, 11, 2, 'addxcyv', '$product->photourl'), new Product(new ProductId(Uuid::uuid4()), '你好同学们', 23, 11, 2, 'addxcyv', '$product->photourl'));
+        //        $productArray = array(new Product(new ProductId(Uuid::uuid4()), 'a', 23, 11, 2, 'addxcyv', '$product->photourl'), new Product(new ProductId(Uuid::uuid4()), '你好同学们', 23, 11, 2, 'addxcyv', '$product->photourl'));
         $productArray = $this->productRepository->showByUserId($user->getUserId());
         return view('seller.main', [
             'seller' => $seller,
@@ -69,25 +68,26 @@ class ProductController extends Controller
     {
         return view('seller.add-product');
     }
-    public function AddAction(Request $request, $id, AddProductCommand $command)
+    public function AddAction(Request $request, AddProductCommand $command)
     {
+
         $name = $request->input('name');
         $price = $request->input('price');
         $weight = $request->input('weight');
         $stock = $request->input('stock');
         $description = $request->input('description');
-        $addrequest = new AddProductRequest($name, $price, $weight, $stock, $description);
+        $addrequest = new AddProductRequest($name, $price, $weight, $stock, $description, 'hola');
         try {
             $command->execute($addrequest);
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage())->withInput();
         }
-        return response()->redirectTo(route('seller_product', ['id' => $id]))
+        return response()->redirectTo(route('seller_product'))
             ->with('success', 'berhasil_add');
     }
     public function Edit($id)
     {
-        $product = $this->productRepository->byId($id);
+        $product = $this->productRepository->byId(new ProductId($id));
         return view('seller.edit-product', [
             'product' => $product,
         ]);
@@ -99,7 +99,7 @@ class ProductController extends Controller
         $weight = $request->input('weight');
         $stock = $request->input('stock');
         $description = $request->input('description');
-        $editrequest = new EditProductRequest($name, $price, $weight, $stock, $description);
+        $editrequest = new EditProductRequest($id, $name, $price, $weight, $stock, $description, 'awikwok');
         try {
             $command->execute($editrequest);
         } catch (Exception $e) {
