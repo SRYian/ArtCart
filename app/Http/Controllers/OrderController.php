@@ -31,11 +31,14 @@ class OrderController extends Controller
     }
     public function BuyerViewAll()
     {
-        $orderArray = array((object)array('name' => 'THE BOI', 'price' => '10000', 'qty' => '1', 'status' => Order::SELESAI), (object)array('name' => 'THE GUY', 'price' => '10', 'qty' => '10', 'status' => Order::PENGIRIMAN));
+        // $orderArray = array((object)array('name' => 'THE BOI', 'price' => '10000', 'qty' => '1', 'status' => Order::SELESAI), (object)array('name' => 'THE GUY', 'price' => '10', 'qty' => '10', 'status' => Order::PENGIRIMAN));
+        $userId = '3cdab866-1015-11ee-be56-0242ac120002';
+        $orderArray = $this->orderRepository->show(new UserId($userId));
+        $finaltotal = $orderArray[0]->final_total ?? null;
         // TODO:change to command or something
         return view('order.main', [
             'orders' => $orderArray,
-            'total' => 100
+            'total' => $finaltotal
         ]);
     }
 }
