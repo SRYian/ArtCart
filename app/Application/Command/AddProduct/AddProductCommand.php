@@ -2,7 +2,17 @@
 
 namespace App\Application\Command\AddProduct;
 
+use App\Core\Models\Product\Product;
+use App\Core\Models\Product\ProductId;
 use App\Core\Repository\ProductRepositoryInterface;
+use DateTime;
+use DateTimeZone;
+use Illuminate\Support\Facades\DB;
+use InvalidArgumentException;
+use Throwable;
+use function intval;
+use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Log;
 
 class AddProductCommand
 {
@@ -17,7 +27,20 @@ class AddProductCommand
     }
     public function  execute(AddProductRequest $request)
     {
-        //TODO:create product add request
-
+        // string $name,
+        // int $price,
+        // int $weight,
+        // int $stock,
+        // string $description
+        DB::beginTransaction();
+        try {
+            Log::debug('f');
+            $product = new Product(new ProductId(Uuid::uuid4()), $request->name, $request->price, $request->weight, $request->stock, $request->description, $request->photourl);
+            $this->productRepository->save($product);
+        } catch (Throwable $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
+        DB::commit();
     }
 }
