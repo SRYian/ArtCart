@@ -2,10 +2,9 @@
 
 namespace App\Core\Repository;
 
-use App\Core\Models\ShipmentRate;
-use App\Core\Models\Shipment;
+use App\Core\Models\ShipmentRate\ShipmentRate;
 
 interface ShipmentRateRepositoryInterface
-{   
+{
     public function byId(ShipmentRate $id): ?ShipmentRate;
 }

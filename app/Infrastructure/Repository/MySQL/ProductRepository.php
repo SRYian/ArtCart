@@ -13,7 +13,7 @@ class ProductRepository implements ProductRepositoryInterface
     public function show(): array
     {
         // TODO: Implement show() method.
-        $row = DB::table('product')->select(['name', 'price', 'weight', 'stock', 'description', 'photourl']);
+        $row = DB::table('product')->select(['product_id', 'user_id', 'category_id', 'name', 'price', 'weight', 'description', 'photourl', 'stock']);
 
         $productList = array();
 
@@ -77,6 +77,22 @@ class ProductRepository implements ProductRepositoryInterface
         $results = DB::select($sql, [
             'id_user' => $userId->id()
         ]);
+
+        $productList = array();
+
+        foreach ($results as $product) {
+            $productList[] = new Product(new ProductId($product->product_id), $product->name, $product->price, $product->weight, $product->stock, $product->description, $product->photourl);
+        }
+
+        return $productList;
+    }
+
+    public function getAll(): array
+    {
+        $sql = "SELECT *
+                FROM product as p";
+
+        $results = DB::select($sql);
 
         $productList = array();
 

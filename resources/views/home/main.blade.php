@@ -30,22 +30,25 @@
     </section>
     <x-_navigation.searchbar></x-_navigation.searchbar>
     <section id="main" class="px-10 grid lg:grid-cols-4 gap-4">
+
+        @foreach($products as $product)
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md">
             <a href="#">
                 <div class="max-w-sm max-h-96">
-                    <img class="rounded-t-lg object-cover w-96" src="/img/placeholder_img.png" alt="" />
+                    <img class="rounded-t-lg object-cover w-96" src="{{ $product->getPhotourl() }}" alt="" />
                 </div>
             </a>
 
             <div class="p-5">
                 <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">WEED ALBUM</h5>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">{{ $product->getName() }}</h5>
                 </a>
-                <p class="mb-3 font-normal text-gray-700">Rp 75.000,00</p>
-                <p class="mb-3 font-normal text-gray-700">Sumatera Utara</p>
-                <p class="mb-3 font-normal text-gray-700">Terjual 10</p>
+                <p class="mb-3 font-normal text-gray-700">Rp{{ $product->getPrice() }}</p>
+{{--                <p class="mb-3 font-normal text-gray-700">Sumatera Utara</p>--}}
+{{--                <p class="mb-3 font-normal text-gray-700">Terjual 10</p>--}}
             </div>
         </div>
+        @endforeach
     </section>
     <section id="footer" class="my-20">
         <div class="w-full flex justify-center items-center">
