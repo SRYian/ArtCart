@@ -112,7 +112,6 @@ class Product
     public function setPhotourl(string $photourl): void
     {
         $this->photourl = $photourl;
-        return $this->photo_url;
     }
 
 
