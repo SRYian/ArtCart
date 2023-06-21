@@ -13,6 +13,7 @@ use App\Core\Repository\CartDetailsRepositoryInterface;
 use App\Core\Repository\CartRepositoryInterface;
 use App\Core\Repository\CouponRepositoryInterface;
 use App\Core\Repository\ProductRepositoryInterface;
+use Exception;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
