@@ -56,7 +56,7 @@ Route::get('/store', function () {
     return view('store.main');
 });
 
-Route::get('/cart', [CartController::class, 'ViewAll'])->name('buyer_cart');
+Route::get('/cart', [CartController::class, 'index'])->name('buyer_cart');
 Route::get('/delivery', [DeliveryController::class, 'ViewAll'])->name('buyer_delivery');
 Route::post('/delivery', [DeliveryController::class, 'submitAction']);
 Route::get('/payment', [PaymentController::class, 'ViewAll'])->name('buyer_payment');

@@ -2,12 +2,23 @@
 
 namespace App\Infrastructure\Repository\MySQL;
 
+use App\Core\Models\Cart\CartId;
 use App\Core\Models\CartDetails\CartDetails;
 use App\Core\Models\CartDetails\CartDetailsId;
+use App\Core\Models\Product\ProductId;
+use App\Core\Models\User\UserId;
 use App\Core\Repository\CartDetailsRepositoryInterface;
+use App\Core\Repository\ProductRepositoryInterface;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Process\Process;
 
 class CartDetailsRepository implements CartDetailsRepositoryInterface
 {
+    private ProductRepositoryInterface $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository) {
+        $this->productRepository =$productRepository;
+    }
     public function save(CartDetails $cartDetails): void
     {
         $payload = [
@@ -16,9 +27,35 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
         DB::table('cart_details')->insert($payload);
     }
 
-    public function byId(CartDetailsId $cartDetailsId): void
+    public function byCartId(CartId $cartId): array
     {
-        // TODO: Implement byId() method.
+//        $rows = DB::table('cart_details')->select(['cart_details_id', 'quantity', 'price', 'user_id', 'product_id', 'order_id', 'cart_id'])
+//        ->where('cart_id', $cartId->id());
+        $sql = "SELECT *
+                FROM artcart.cart_details
+                WHERE cart_id = :id";
+        $rows = DB::select($sql, [
+            'id' => $cartId->id()
+        ]);
+
+
+
+        $cartDetailsList = array();
+        foreach($rows as $item) {
+            $product = $this->productRepository->byId(new ProductId($item->product_id));
+            $cartDetailsList[] = new CartDetails(
+                new CartDetailsId($item->cart_details_id),
+                $cartId,
+                new UserId($item->user_id),
+                new ProductId($item->product_id),
+                $item->quantity,
+                $item->price,
+                $product->getName(),
+                $product->getStock()
+            );
+        }
+
+        return $cartDetailsList;
     }
 
     public function update(CartDetails $cartDetails): void
