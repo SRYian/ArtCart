@@ -21,10 +21,20 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
     }
     public function save(CartDetails $cartDetails): void
     {
-        $payload = [
+//        $payload = $this->cons
+//        DB::table('cart_details')->insert($payload);
+    }
 
+    private function constructPayloadWithoutId(CartDetails $cartDetails)
+    {
+        // might throw error
+        return [
+            "quantity" => $cartDetails->getQuantity(),
+            "price" => $cartDetails->getPrice(),
+            "user_id" => $cartDetails->getUserId(),
+            "product_id" => $cartDetails->getProductId(),
+            "cart_id" => $cartDetails->getCartId(),
         ];
-        DB::table('cart_details')->insert($payload);
     }
 
     public function byCartId(CartId $cartId): array
