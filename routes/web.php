@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SellerDashBoardController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,33 +40,21 @@ Route::get('/store', function () {
     return view('store.main');
 });
 
-Route::get('/cart', function () {
-    return view('cart.main');
-});
-
-Route::get('/delivery', function () {
-    return view('cart.delivery');
-});
-
-Route::get('/payment', function () {
-    return view('cart.payment');
-});
+Route::get('/cart', [CartController::class, 'ViewAll'])->name('buyer_cart');
+Route::get('/delivery', [DeliveryController::class, 'ViewAll'])->name('buyer_delivery');
+Route::post('/delivery', [DeliveryController::class, 'submitAction']);
+Route::get('/payment', [PaymentController::class, 'ViewAll'])->name('buyer_payment');
+Route::post('/payment', [PaymentController::class, 'SubmitAction']);
 
 
-Route::get('/order', function () {
-    return view('order.main');
-});
+Route::get('/order', [OrderController::class, 'BuyerViewAll'])->name('buyer_order');
 // Route untuk Seller
 // TODO:Sesuaikan data dengan backend
-Route::get('/seller', function () {
-    return view('seller.main');
-});
-Route::get('/seller/add-coupon', function () {
-    return view('seller.add-coupon');
-});
-Route::get('/seller/add-product', function () {
-    return view('seller.add-product');
-});
-Route::get('/seller/order', function () {
-    return view('seller.order');
-});
+Route::get('/seller', [ProductController::class, 'testViewAll'])->name('seller_product');
+Route::get('/seller/product/edit/{ProductId:uuid}', [ProductController::class, 'testEditId'])->name('seller_editproduct');
+
+Route::get('/seller/add-coupon', [CouponController::class, 'ViewAll'])->name('seller_addcoupon');
+Route::post('/seller/add-coupon', [CouponController::class, 'AddAction']);
+Route::get('/seller/add-product', [ProductController::class, 'Add'])->name('seller_addproduct');
+Route::post('/seller/add-product', [ProductController::class, 'AddAction']);
+Route::get('/seller/order', [OrderController::class, 'SellerViewAll'])->name('seller_order');

@@ -21,9 +21,8 @@
 
     <div class="grid grid-cols-3 gap-4 justify-around p-10">
         <div class="col-span-2">
-
             <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">CART</h5>
-            <form id="input" class="my-10 w-1/3">
+            <form method="POST" id="input" class="my-10 w-1/3">
                 <div class="flex flex-col space-y-2">
                     <label for="city">City</label>
                     <select name="city" id="city" class="px-2 py-4 rounded-md">
@@ -40,13 +39,15 @@
                     </select>
                 </div>
             </form>
-            <button type="submit" class="greyButton">BACK</button>
+            <a href="/cart">
+                <button  type="submit" class="greyButton">BACK</button>
+            </a>
         </div>
         <div class="col-span-1 max-w-sm bg-gray-200 rounded-lg p-12 flex flex-col space-y-10 justify-start shadow-md">
             <p class="font-bold">SUMMARY</p>
-            <p>Delivery: Rp0</p>
-            <p>Coupon: -Rp72.000,00</p>
-            <p>Total: Rp0</p>
+            <p>Delivery: Rp{{$deliveryPrice}}</p>
+            <p>Coupon: -Rp{{$couponCut}}</p>
+            <p>Total: Rp{{$total}}</p>
             <button type="submit" form="input" class="greyButton">NEXT</button>
         </div>
 

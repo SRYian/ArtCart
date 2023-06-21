@@ -7,11 +7,11 @@ use InvalidArgumentException;
 class Order
 {
 
-    const SELESAI = 'S';
-    const BELUM = 'B';
-    const PROSES = 'PR';
-    const PENGIRIMAN = 'PE';
-    const DIBATALKAN = 'B';
+    const SELESAI = 'SELESAI';
+    const BELUM = 'BELUM SELESAI';
+    const PROSES = 'PROSES';
+    const PENGIRIMAN = 'PENGIRIMAN';
+    const DIBATALKAN = 'BATAL';
 
     private OrderId $id;
     private int $finalTotal;
