@@ -15,12 +15,12 @@ class CreateCouponTable extends Migration
     {
         Schema::create('coupon', function (Blueprint $table) {
             $table->string('coupon_code', 10)->primary();
-            $table->char('user_id', 13);
+            $table->uuid('user_id');
             $table->float('discount');
             $table->text('description');
             $table->string('photourl', 256);
             
-            $table->foreign('user_id', 'coupon_seller')->references('user_id')->on('seller_account');
+            $table->foreign('user_id', 'coupon_seller')->references('user_id')->on('seller_account')->onUpdate('cascade');
         });
     }
 

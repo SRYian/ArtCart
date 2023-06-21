@@ -19,7 +19,7 @@
                 <a href="/store">
                     <img class="rounded-lg object-cover w-20 h-20 shadow-md" src="/img/placeholder_img.png" alt="" />
                 </a>
-                <h3 class="font-bold">Penjual 01</h3>
+                <h3 class="font-bold">{{ $seller->shop_name }}</h3>
             </div>
             <div class="flex flex-col space-y-2">
                 <a href="/seller/add-coupon" class="greyButton border-1 px-4 py-2">NEW COUPON</a>
@@ -37,6 +37,7 @@
                 <th class="px-6 py-3 border-b-4 border-blue-500">Action</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach ($products as $product)
             <tr class="bg-gray-50 border-b hover:bg-gray-100">

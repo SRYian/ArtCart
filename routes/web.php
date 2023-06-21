@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
@@ -28,6 +30,8 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::post('/login', [AuthenticationController::class, 'store'])->name('login');
+
 Route::get('/register', function () {
     return view('auth.register');
 });
@@ -50,6 +54,7 @@ Route::post('/payment', [PaymentController::class, 'SubmitAction']);
 Route::get('/order', [OrderController::class, 'BuyerViewAll'])->name('buyer_order');
 // Route untuk Seller
 // TODO:Sesuaikan data dengan backend
+
 Route::get('/seller', [ProductController::class, 'testViewAll'])->name('seller_product');
 Route::get('/seller/product/edit/{ProductId:uuid}', [ProductController::class, 'testEditId'])->name('seller_editproduct');
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBuyerAccountTable extends Migration
+class CreateSellerAccountTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateBuyerAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create('buyer_account', function (Blueprint $table) {
-            $table->char('user_id', 13)->primary();
-            $table->char('curr_cart_id', 13);
-            $table->string('shipping_address', 1000);
+        Schema::create('seller_account', function (Blueprint $table) {
+            $table->uuid('user_id')->primary();
+            $table->string('shop_name', 128);
+            $table->string('shop_address', 1000);
             $table->string('phone', 20);
             
-            $table->foreign('user_id', 'user_buyer')->references('user_id')->on('user');
+            $table->foreign('user_id', 'seller_user')->references('user_id')->on('user')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateBuyerAccountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buyer_account');
+        Schema::dropIfExists('seller_account');
     }
 }
