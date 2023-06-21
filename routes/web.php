@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\SellerDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,8 @@ Route::get('/home', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+Route::post('/login', [AuthenticationController::class, 'store'])->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -51,9 +55,16 @@ Route::get('/order', function () {
 });
 // Route untuk Seller
 // TODO:Sesuaikan data dengan backend
-Route::get('/seller', function () {
-    return view('seller.main');
-});
+
+//Route::get('/seller', function () {
+//    return view('seller.main');
+//});
+
+Route::get('/seller', [SellerDashboardController::class, 'index'])->name('seller_dashboard');
+
+//Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+
 Route::get('/seller/add-coupon', function () {
     return view('seller.add-coupon');
 });

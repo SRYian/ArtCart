@@ -19,7 +19,7 @@
                 <a href="/store">
                     <img class="rounded-lg object-cover w-20 h-20 shadow-md" src="/img/placeholder_img.png" alt="" />
                 </a>
-                <h3 class="font-bold">Penjual 01</h3>
+                <h3 class="font-bold">{{ $seller->shop_name }}</h3>
             </div>
             <div class="flex flex-col space-y-2">
                 <a href="/seller/add-coupon" class="greyButton border-1 px-4 py-2">NEW COUPON</a>
@@ -37,17 +37,18 @@
                 <th class="px-6 py-3 border-b-4 border-blue-500">Action</th>
             </tr>
         </thead>
-        <tbody>
-            <tr class="bg-gray-50 border-b hover:bg-gray-100">
-                <td class="px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                <td class="px-6 py-4">Rp75.000,00</td>
-                <td class="px-6 py-4">20 </td>
-                <td class="px-6 py-4">
-                    <button class="bluebutton text-white">EDIT</button>
-                    <button class="redbutton text-white">REMOVE</button>
-                </td>
-            </tr>
-        </tbody>
+
+{{--        <tbody>--}}
+{{--            <tr class="bg-gray-50 border-b hover:bg-gray-100">--}}
+{{--                <td class="px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>--}}
+{{--                <td class="px-6 py-4">Rp75.000,00</td>--}}
+{{--                <td class="px-6 py-4">20 </td>--}}
+{{--                <td class="px-6 py-4">--}}
+{{--                    <button class="bluebutton text-white">EDIT</button>--}}
+{{--                    <button class="redbutton text-white">REMOVE</button>--}}
+{{--                </td>--}}
+{{--            </tr>--}}
+{{--        </tbody>--}}
     </table>
     <button type="submit" class="greyButton">BACK</button>
 

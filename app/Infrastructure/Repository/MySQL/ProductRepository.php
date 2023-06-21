@@ -4,9 +4,11 @@ namespace App\Infrastructure\Repository\MySQL;
 
 use App\Core\Models\Product\Product;
 use App\Core\Models\Product\ProductId;
+use App\Core\Models\User\UserId;
+use App\Core\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
-class ProductRepository implements \App\Core\Repository\ProductRepositoryInterface
+class ProductRepository implements ProductRepositoryInterface
 {
     public function show(): array
     {
@@ -64,5 +66,24 @@ class ProductRepository implements \App\Core\Repository\ProductRepositoryInterfa
             "description" => $product->getDescription(),
             "photourl" => $product->getPhotourl(),
         ];
+    }
+
+    public function showByUserId(UserId $userId): array
+    {
+        $sql = "SELECT p.user_id, p.shop_name, p.shop_address, p.phone
+                FROM product as p
+                WHERE p.user_id = :id_user";
+
+        $results = DB::select($sql, [
+            'id_user' => $userId->id()
+        ]);
+
+        $productList = array();
+
+        foreach ($results as $product) {
+            $productList[] = new Product(new ProductId($product->product_id), $product->name, $product->price, $product->weight, $product->stock, $product->description, $product->photourl);
+        }
+
+        return $productList;
     }
 }
