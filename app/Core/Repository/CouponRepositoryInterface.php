@@ -2,14 +2,14 @@
 
 namespace App\Core\Repository;
 
-use App\Core\Models\Coupon;
-use App\Core\Models\CouponId;
+use App\Core\Models\Coupon\Coupon;
+use App\Core\Models\Coupon\CouponCode;
 
 interface CouponRepositoryInterface
-{   
-    public function byId(CouponId $id): ?Coupon;
-    
+{
+    public function byId(CouponCode $id): ?Coupon;
+
     public function save(Coupon $coupon): void;
-    
+
     public function update(Coupon $coupon): void;
 }
