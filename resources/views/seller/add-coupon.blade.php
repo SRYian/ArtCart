@@ -21,6 +21,7 @@
 
         <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">ADD NEW COUPON CODE</h5>
         <form id="input" method="POST" class="my-10">
+        @csrf
             <div class="flex space-x-2 justify-center">
                 <div class="flex flex-col space-y-2">
                     <label for="couponCode">Code</label>
