@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\Query\Seller;
+namespace App\Application\Query\Order;
 
 use App\Core\Models\User\UserId;
 
 interface OrderQueryInterface
 {
-    public function execute(UserId $userId): ?SellerAccountDto;
+    public function execute(UserId $userId): ?array;
 }

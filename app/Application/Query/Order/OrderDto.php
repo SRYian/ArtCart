@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Application\Query\Seller;
+namespace App\Application\Query\Order;
 
 class OrderDto
 {
     public function __construct(
-        public string $user_id,
-        public string $shop_name,
-        public string $shop_address,
-        public string $phone,
+        public string $name,
+        public int $price,
+        public int $quantity,
+        public string $status,
+        public int $finalTotal,
     ) {
     }
 }

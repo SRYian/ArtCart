@@ -2,15 +2,18 @@
 
 namespace App\Infrastructure\Query\MySQL;
 
+use App\Application\Query\Order\OrderDto;
+use App\Application\Query\Order\OrderQueryInterface;
 use App\Application\Query\Seller\SellerAccountDto;
 use App\Application\Query\Seller\SellerAccountQueryInterface;
+use App\Core\Models\Order\Order;
 use App\Core\Models\User\UserId;
 use Illuminate\Support\Facades\DB;
 
-class OrderQuery implements SellerAccountQueryInterface
+class OrderQuery implements OrderQueryInterface
 {
 
-    public function execute(UserId $userId): ?SellerAccountDto
+    public function execute(UserId $userId): ?array
     {
         $sql = "SELECT p.name, cd.price, cd.quantity, o.final_total
         FROM cart_details cd
@@ -18,19 +21,25 @@ class OrderQuery implements SellerAccountQueryInterface
         INNER JOIN product p ON cd.user_id=p.user_id
         WHERE cd.user_id=:id_user";
 
-        $result = DB::select($sql, [
-            //            'id_user' => $userId->id()
+        $row = DB::select($sql, [
+            //'id_user' => $userId->id()
             'id_user' => $userId->id()
         ]);
 
-        if ($result) {
-            return new SellerAccountDto(
-                user_id: $result[0]->user_id,
-                shop_name: $result[0]->shop_name,
-                shop_address: $result[0]->shop_address,
-                phone: $result[0]->phone
+
+
+        $orderList = array();
+
+        foreach ($row as $order) {
+            $orderList[] = new OrderDto(
+                $order->name,
+                $order->price,
+                $order->quantity,
+                $order->status,
+                $order->final_total
             );
         }
-        return null;
+
+        return $orderList;
     }
 }
