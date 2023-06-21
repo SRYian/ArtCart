@@ -21,8 +21,9 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
     }
     public function save(CartDetails $cartDetails): void
     {
-//        $payload = $this->cons
-//        DB::table('cart_details')->insert($payload);
+        $payload = $this->constructPayloadWithoutId($cartDetails);
+        $payload['cart_details_id'] = $cartDetails->getCartDetailsId()->id();
+        DB::table('cart_details')->insert($payload);
     }
 
     private function constructPayloadWithoutId(CartDetails $cartDetails)
@@ -31,9 +32,9 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
         return [
             "quantity" => $cartDetails->getQuantity(),
             "price" => $cartDetails->getPrice(),
-            "user_id" => $cartDetails->getUserId(),
-            "product_id" => $cartDetails->getProductId(),
-            "cart_id" => $cartDetails->getCartId(),
+            "user_id" => $cartDetails->getUserId()->id(),
+            "product_id" => $cartDetails->getProductId()->id(),
+            "cart_id" => $cartDetails->getCartId()->id(),
         ];
     }
 
