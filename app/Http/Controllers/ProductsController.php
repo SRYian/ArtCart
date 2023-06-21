@@ -23,9 +23,4 @@ class ProductsController extends Controller
             'category' => $category->getName()
         ]);
     }
-
-    public function add(Request $request)
-    {
-        $productId = $request->input('product_id');
-    }
 }
