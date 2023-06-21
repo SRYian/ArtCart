@@ -21,9 +21,10 @@
 
         <h5 class="mb-2 text-2xl font-bold tracking-tight bluefont">ADD NEW COUPON CODE</h5>
         <form id="input" method="POST" class="my-10">
+        @csrf
             <div class="flex space-x-2 justify-center">
                 <div class="flex flex-col space-y-2">
-                    <label for="name">Code</label>
+                    <label for="couponCode">Code</label>
                     <input required name="couponCode" id="code" class="px-2 py-4 rounded-md bg-gray-200 focus:outline-none focus:bg-gray-300">
 
                     <label for="maxuse">Max uses</label>

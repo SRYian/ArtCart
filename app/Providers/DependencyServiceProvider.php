@@ -5,6 +5,8 @@ namespace App\Providers;
 
 
 use App\Application\Query\Seller\SellerAccountQueryInterface;
+use App\Core\Repository\CouponRepositoryInterface;
+use App\Infrastructure\Repository\MySQL\CouponRepository;
 use App\Core\Repository\CategoryRepositoryInterface;
 use App\Core\Repository\OrderRepositoryInterface;
 use App\Core\Repository\ProductRepositoryInterface;
@@ -25,6 +27,8 @@ class DependencyServiceProvider extends ServiceProvider
         //Service
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+        $this->app->bind(CouponRepositoryInterface::class, CouponRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+
     }
 }
