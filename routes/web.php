@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/product/{id}', [ProductsController::class, 'index'])->name('product_detail');
+Route::post('/cart', [CartController::class, 'add'])->name('add_cart');
 
 //Route::get('/product', function () {
 //    return view('products.main');
@@ -48,9 +49,6 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
-Route::get('/products', function () {
-    return view('products.main');
-});
 
 Route::get('/store', function () {
     return view('store.main');

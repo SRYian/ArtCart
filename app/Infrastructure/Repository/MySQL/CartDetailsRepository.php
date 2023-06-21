@@ -21,10 +21,30 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
     }
     public function save(CartDetails $cartDetails): void
     {
-        $payload = [
-
-        ];
+        $payload = $this->constructPayloadWithoutId($cartDetails);
+        $payload['cart_details_id'] = $cartDetails->getCartDetailsId()->id();
         DB::table('cart_details')->insert($payload);
+    }
+
+    public function update(CartDetails $cartDetails): void
+    {
+        $payload = $this->constructPayloadWithoutId($cartDetails);
+        $payload['cart_details_id'] = $cartDetails->getCartDetailsId()->id();
+        DB::table('cart_details')
+            ->where('product_id', $cartDetails->getCartDetailsId()->id())
+            ->update($payload);
+    }
+
+    public function constructPayloadWithoutId(CartDetails $cartDetails)
+    {
+        // might throw error
+        return [
+            "quantity" => $cartDetails->getQuantity(),
+            "price" => $cartDetails->getPrice(),
+            "user_id" => $cartDetails->getUserId()->id(),
+            "product_id" => $cartDetails->getProductId()->id(),
+            "cart_id" => $cartDetails->getCartId()->id(),
+        ];
     }
 
     public function byCartId(CartId $cartId): array
@@ -58,9 +78,32 @@ class CartDetailsRepository implements CartDetailsRepositoryInterface
         return $cartDetailsList;
     }
 
-    public function update(CartDetails $cartDetails): void
+    public function byCartIdAndProductId(CartId $cartId, ProductId $productId): ?CartDetails
     {
-        // TODO: Implement update() method.
+//        $rows = DB::table('cart_details')->select(['cart_details_id', 'quantity', 'price', 'user_id', 'product_id', 'order_id', 'cart_id'])
+//        ->where('cart_id', $cartId->id());
+        $sql = "SELECT *
+                FROM artcart.cart_details
+                WHERE cart_id = :id AND product_id = :prodId";
+        $item = DB::select($sql, [
+            'id' => $cartId->id(),
+            'prodId' => $productId->id()
+        ]);
+
+        if($item[0] == null) return null;
+
+
+        $product = $this->productRepository->byId($productId);
+        return new CartDetails(
+            new CartDetailsId($item[0]->cart_details_id),
+            $cartId,
+            new UserId($item[0]->user_id),
+            new ProductId($item[0]->product_id),
+            $item[0]->quantity,
+            $item[0]->price,
+            $product->getName(),
+            $product->getStock()
+        );
     }
 
     public function delete(CartDetails $cartDetails): void

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Core\Models\Product\ProductId;
 use App\Core\Repository\CategoryRepositoryInterface;
 use App\Core\Repository\ProductRepositoryInterface;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
