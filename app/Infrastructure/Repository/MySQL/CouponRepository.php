@@ -28,7 +28,7 @@ class CouponRepository implements CouponRepositoryInterface
     public function save(Coupon $coupon): void
     {
         $payload = $this->constructPayload($coupon);
-        $payload['user_id'] = $coupon->getUserId()->id();
+        $payload['coupon_code'] = $coupon->getCouponCode()->getCode();
         DB::table('coupon')->insert($payload);
     }
 
@@ -44,11 +44,11 @@ class CouponRepository implements CouponRepositoryInterface
     {
         // TODO: sesuiin sama Db
         return [
-            "user_id" => $coupon->getUserId(),
+            "user_id" => $coupon->getUserId()->id(),
             "discount" => $coupon->getDiscount(),
             "uses" => $coupon->getUses(),
             "max_use" => $coupon->getMaxUse(),
-            "photourl" => $coupon->getBerlakuSampai(),
+            "berlaku_sampai" => $coupon->getBerlakuSampai(),
         ];
     }
 }
