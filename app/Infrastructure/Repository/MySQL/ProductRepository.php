@@ -36,7 +36,9 @@ class ProductRepository implements ProductRepositoryInterface
     {
         // TODO: Implement save() method.
         $payload = $this->constructPayloadWithoutId($product);
-        $payload['product_id'] = $product->getId();
+        $payload['product_id'] = $product->getId()->id();
+        $payload['user_id'] = '3cdab866-1015-11ee-be56-0242ac120002';
+        $payload['category_id'] = 'cate_dfscsk23';
         DB::table('product')->insert($payload);
     }
 
@@ -44,9 +46,9 @@ class ProductRepository implements ProductRepositoryInterface
     {
         // TODO: Implement update() method.
         $payload = $this->constructPayloadWithoutId($product);
-        $payload['product_id'] = $product->getId();
+        $payload['product_id'] = $product->getId()->id();
         DB::table('product')
-            ->where('product_id', $product->getId())
+            ->where('product_id', $product->getId()->id())
             ->update($payload);
     }
 
