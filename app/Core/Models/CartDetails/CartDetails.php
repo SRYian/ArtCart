@@ -73,9 +73,9 @@ class CartDetails
     /**
      * @return Cart
      */
-    public function getCart(): Cart
+    public function getCartId(): CartId
     {
-        return $this->cart;
+        return $this->cartId;
     }
 
     /**
