@@ -92,11 +92,11 @@ class Coupon
         $now = new DateTime('now');
         if ($now->diff($berlakuSampai)->days > 2 || $now->diff($berlakuSampai)->days < 14 || $maxUse < 1) {
             $this->maxUse = $maxUse;
-            $this->uses=$maxUse;
+            $this->uses = $maxUse;
             $this->berlakuDari = $now;
             $this->berlakuSampai = $berlakuSampai;
         } else {
-            throw new Exception('kupon tidak valid');
+            throw new Exception('kupon_tidak_valid');
         }
     }
     public function IsValid()
@@ -107,7 +107,8 @@ class Coupon
         return true;
     }
 
-    public function AddUse(){
-        $this->uses+=1;
+    public function AddUse()
+    {
+        $this->uses += 1;
     }
 }
