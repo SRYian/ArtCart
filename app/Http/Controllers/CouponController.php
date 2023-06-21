@@ -38,8 +38,7 @@ class CouponController extends Controller
         $code = $request->input('couponCode');
         $maxUse = $request->input('maxUse');
         $priceCut = $request->input('priceCut');
-        $validDate = $request->input('validDate');
-        $validDate = new DateTime($validDate);
+        $validDate = new DateTime($request->input('valid_date'));
         $addrequest = new AddCouponRequest($code, $userId, $priceCut, $maxUse, $validDate);
         try {
             $command->execute($addrequest);
