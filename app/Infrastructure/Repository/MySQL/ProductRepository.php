@@ -29,7 +29,7 @@ class ProductRepository implements ProductRepositoryInterface
         $row = DB::table('product')->where('product_id', $id->id())->first();
         // TODO: Implement byId() method.
         if (!$row) return null;
-        return new Product(new ProductId($row->product_id), $row->name, $row->price, $row->weight, $row->stock, $row->description, $row->photourl);
+        return new Product(new ProductId($row->product_id), $row->name, $row->price, $row->weight, $row->stock, $row->description, $row->photourl, $row->category_id);
     }
 
     public function save(Product $product): void

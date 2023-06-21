@@ -11,6 +11,7 @@ class Product
     private int $price;
     private int $weight;
     private int $stock;
+    private ?string $categoryId;
 
 
     private string $description;
@@ -116,6 +117,11 @@ class Product
         // return $this->photo_url;
     }
 
+    public function getCategoryId(): string
+    {
+        return $this->categoryId;
+    }
+
 
 
     /**
@@ -125,7 +131,7 @@ class Product
      * @param string $description
      * @param string $photourl
      */
-    public function __construct(ProductId $id, string $name, int $price, int $weight, int $stock, string $description, string $photourl)
+    public function __construct(ProductId $id, string $name, int $price, int $weight, int $stock, string $description, string $photourl, ?string $categoryId = null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -133,7 +139,7 @@ class Product
         $this->weight = $weight;
         $this->stock = $stock;
         $this->description = $description;
-
+        $this->categoryId = $categoryId;
         $this->photourl = $photourl;
     }
 
