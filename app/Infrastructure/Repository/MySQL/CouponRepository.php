@@ -20,6 +20,8 @@ class CouponRepository implements CouponRepositoryInterface
             $code,
             $row->user_id,
             $row->discount,
+            //$row->description,
+            //$row->photourl
             $row->max_use,
             $row->valid_date,
         );
