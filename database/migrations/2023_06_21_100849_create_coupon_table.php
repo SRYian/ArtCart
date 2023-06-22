@@ -17,8 +17,10 @@ class CreateCouponTable extends Migration
             $table->string('coupon_code', 10)->primary();
             $table->uuid('user_id');
             $table->float('discount');
-            $table->text('description');
-            $table->string('photourl', 256);
+            //$table->text('description');
+            //$table->string('photourl', 256);
+            $table->int('max_use');
+            $table->datetime('valid_date');
             
             $table->foreign('user_id', 'coupon_seller')->references('user_id')->on('seller_account')->onUpdate('cascade');
         });
