@@ -20,7 +20,6 @@ class CouponRepository implements CouponRepositoryInterface
             $code,
             $row->user_id,
             $row->discount,
-            $row->uses,
             $row->max_use,
             $row->valid_date,
         );
@@ -47,7 +46,7 @@ class CouponRepository implements CouponRepositoryInterface
         return [
             "user_id" => $coupon->getUserId()->id(),
             "discount" => $coupon->getDiscount(),
-            "uses" => $coupon->getUses(),
+            //"uses" => $coupon->getUses(),
             "max_use" => $coupon->getMaxUse(),
             "berlaku_sampai" => $coupon->getBerlakuSampai(),
         ];
